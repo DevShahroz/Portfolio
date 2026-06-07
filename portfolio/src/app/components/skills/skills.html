@@ -1,0 +1,33 @@
+<section id="skills" class="section-padding">
+  <div class="mx-auto max-w-6xl px-6 lg:px-8">
+    <div class="section-header">
+      <span class="section-label">Skills</span>
+      <h2 class="section-title">Technologies I work with</h2>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      @for (category of data.skillCategories; track category.title; let i = $index) {
+        <div class="glass-card group p-6 transition-transform duration-300 hover:-translate-y-1">
+          <div
+            class="mb-4 flex h-10 w-10 items-center justify-center rounded-lg text-lg font-bold text-white"
+            [class]="i === 0 ? 'bg-sky-500/20 text-sky-400' : i === 1 ? 'bg-indigo-500/20 text-indigo-400' : 'bg-violet-500/20 text-violet-400'"
+          >
+            {{ category.title.charAt(0) }}
+          </div>
+          <h3 class="text-lg font-semibold text-white">{{ category.title }}</h3>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            @for (skill of category.skills; track skill) {
+              <li>
+                <span
+                  class="inline-block rounded-lg border border-white/5 bg-white/5 px-3 py-1.5 text-sm text-zinc-300 transition-colors group-hover:border-sky-500/20 group-hover:text-white"
+                >
+                  {{ skill }}
+                </span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>

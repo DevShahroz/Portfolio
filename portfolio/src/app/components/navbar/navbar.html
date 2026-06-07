@@ -1,0 +1,91 @@
+<header
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+  [class.nav-scrolled]="scrolled()"
+>
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8"
+    aria-label="Main navigation"
+  >
+    <a href="#" class="group flex items-center" aria-label="Back to top">
+      <span class="text-lg font-bold tracking-tight text-white transition-colors group-hover:text-zinc-200">
+        {{ data.shortName }}<span class="bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">.</span>
+      </span>
+    </a>
+
+    <ul class="hidden items-center gap-1 md:flex">
+      @for (link of data.navLinks; track link.href) {
+        <li>
+          <a
+            [href]="link.href"
+            class="rounded-lg px-4 py-2 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <div class="hidden items-center gap-3 md:flex">
+      <a
+        [href]="data.resumeUrl"
+        target="_blank"
+        rel="noopener"
+        class="rounded-lg border border-white/10 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-sky-500/50 hover:text-white"
+      >
+        Resume
+      </a>
+      <a
+        href="#contact"
+        class="rounded-lg bg-gradient-to-r from-sky-500 to-indigo-500 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-sky-500/20 transition-transform hover:scale-[1.02]"
+      >
+        Get in Touch
+      </a>
+    </div>
+
+    <button
+      type="button"
+      class="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-zinc-300 md:hidden"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-label="Toggle menu"
+    >
+      @if (menuOpen()) {
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      } @else {
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      }
+    </button>
+  </nav>
+
+  @if (menuOpen()) {
+    <div class="border-t border-white/5 bg-zinc-950/95 px-6 py-4 backdrop-blur-xl md:hidden">
+      <ul class="flex flex-col gap-1">
+        @for (link of data.navLinks; track link.href) {
+          <li>
+            <a
+              [href]="link.href"
+              (click)="closeMenu()"
+              class="block rounded-lg px-4 py-3 text-zinc-300 transition-colors hover:bg-white/5 hover:text-white"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        }
+        <li class="mt-2 border-t border-white/5 pt-2">
+          <a
+            [href]="data.resumeUrl"
+            target="_blank"
+            rel="noopener"
+            class="block rounded-lg px-4 py-3 text-sky-400"
+          >
+            Download Resume
+          </a>
+        </li>
+      </ul>
+    </div>
+  }
+</header>

@@ -1,0 +1,68 @@
+<section id="about" class="section-padding">
+  <div class="mx-auto max-w-6xl px-6 lg:px-8">
+    <div class="section-header">
+      <span class="section-label">About Me</span>
+      <h2 class="section-title">Polished UI, connected to real systems</h2>
+    </div>
+
+    <div class="mt-12 grid gap-8 lg:grid-cols-5 lg:gap-12">
+      <div class="lg:col-span-3">
+        <p class="text-lg leading-relaxed text-zinc-400">
+          {{ data.summary }}
+        </p>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          <div class="glass-card p-5">
+            <p class="text-3xl font-bold text-sky-400">2+</p>
+            <p class="mt-1 text-sm text-zinc-400">Years of Experience</p>
+          </div>
+          <div class="glass-card p-5">
+            <p class="text-3xl font-bold text-indigo-400">10+</p>
+            <p class="mt-1 text-sm text-zinc-400">Technologies Mastered</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="glass-card h-full p-6">
+          <div class="mb-6 flex items-center gap-4">
+            <img
+              [src]="data.profileImageUrl"
+              [alt]="data.name"
+              class="h-16 w-16 rounded-xl object-cover object-top ring-2 ring-sky-500/30"
+              width="64"
+              height="64"
+            />
+            <div>
+              <p class="font-semibold text-white">{{ data.name }}</p>
+              <p class="text-sm text-sky-400">{{ data.title }}</p>
+            </div>
+          </div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-zinc-500">Quick Info</h3>
+          <dl class="mt-5 space-y-4">
+            <div>
+              <dt class="text-xs text-zinc-500">Full Name</dt>
+              <dd class="mt-0.5 font-medium text-white">{{ data.name }}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-zinc-500">Location</dt>
+              <dd class="mt-0.5 font-medium text-white">{{ data.location }}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-zinc-500">Education</dt>
+              <dd class="mt-0.5 font-medium text-white">{{ data.education[0].degree }}</dd>
+              <dd class="text-sm text-zinc-400">{{ data.education[0].institution }}</dd>
+            </div>
+            <div>
+              <dt class="text-xs text-zinc-500">Languages</dt>
+              <dd class="mt-2 flex flex-wrap gap-2">
+                @for (lang of data.languages; track lang) {
+                  <span class="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-300">{{ lang }}</span>
+                }
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
