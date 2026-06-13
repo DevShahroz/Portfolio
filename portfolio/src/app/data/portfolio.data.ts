@@ -3,8 +3,12 @@ export interface NavLink {
   href: string;
 }
 
+export type SkillCategoryIcon = 'frontend' | 'backend' | 'integration';
+
 export interface SkillCategory {
   title: string;
+  subtitle: string;
+  icon: SkillCategoryIcon;
   skills: string[];
 }
 
@@ -16,11 +20,22 @@ export interface Experience {
   highlights: string[];
 }
 
+export interface ProjectImage {
+  src: string;
+  alt: string;
+}
+
 export interface Project {
   title: string;
   description: string;
   tags: string[];
   gradient: string;
+  featured?: boolean;
+  image?: string;
+  images?: ProjectImage[];
+  highlights?: string[];
+  liveUrl?: string;
+  githubUrl?: string;
 }
 
 export interface Education {
@@ -59,6 +74,8 @@ export const portfolio = {
   skillCategories: [
     {
       title: 'Frontend',
+      subtitle: 'Interfaces users love',
+      icon: 'frontend',
       skills: [
         'Angular 16+',
         'TypeScript',
@@ -73,10 +90,14 @@ export const portfolio = {
     },
     {
       title: 'Backend',
+      subtitle: 'APIs & server logic',
+      icon: 'backend',
       skills: ['Node.js', 'NestJS', 'Express.js', 'REST APIs'],
     },
     {
       title: 'Integration & Tools',
+      subtitle: 'Connect, test & ship',
+      icon: 'integration',
       skills: [
         'REST API Integration',
         'Authentication Flows',
@@ -112,6 +133,40 @@ export const portfolio = {
     },
   ] as Experience[],
   projects: [
+    {
+      title: 'WalletWise',
+      description:
+        'Production-ready personal finance web app for tracking spending, managing budgets, hitting savings goals, and understanding money through interactive reports — built as a mobile-first PWA with a NestJS REST API and Supabase data layer, deployed on Netlify and Render.',
+      tags: ['Angular 21', 'NestJS', 'Supabase', 'Tailwind CSS', 'Chart.js', 'PWA', 'JWT'],
+      gradient: 'from-blue-500/20 to-teal-500/5',
+      featured: true,
+      liveUrl: 'https://yourwalletwise.netlify.app',
+      image: '/projects/walletwise/walletwise-hero.png',
+      images: [
+        {
+          src: '/projects/walletwise/walletwise-hero.png',
+          alt: 'WalletWise dashboard on laptop and mobile — Personal Finance PWA',
+        },
+        {
+          src: '/projects/walletwise/walletwise-mobile-views.png',
+          alt: 'WalletWise login, dashboard, and transactions on mobile',
+        },
+        {
+          src: '/projects/walletwise/walletwise-architecture.png',
+          alt: 'WalletWise full-stack architecture with Angular, NestJS, and Supabase',
+        },
+      ],
+      highlights: [
+        'Responsive PWA dashboard with live balance, Chart.js spending analytics, and recent transactions',
+        'Full transaction management — CRUD, date/type filters, search, receipts, and mobile quick-add',
+        'Savings goals with progress tracking and fund contributions linked to expenses',
+        'Monthly reports with income vs expense charts, category breakdown, and CSV export',
+        'JWT authentication, password reset, profile & avatar settings, custom categories, and budget limits',
+        'Super Admin panel for user management, account status control, and usage stats',
+        'Dark/light theme with persisted preference, bottom nav, and installable Add to Home Screen PWA',
+        'NestJS REST API with Swagger docs, Supabase PostgreSQL + storage, and production CORS/env setup',
+      ],
+    },
     {
       title: 'E-Commerce Platform',
       description:
